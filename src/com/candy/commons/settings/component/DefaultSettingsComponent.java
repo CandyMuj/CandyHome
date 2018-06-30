@@ -53,7 +53,6 @@ public class DefaultSettingsComponent implements IDefaultSettingsComponent {
 		Set<String> set = this.getPropertiesFileName(classLoader);
 		log.info("Initializing properties size [" + set.size() + "]");
 
-		InputStream inputStream = null;
 		try {
 			for (String str : set) {
 				properties.load(classLoader.getResourceAsStream(ROOT_PATH + str));
@@ -61,11 +60,6 @@ public class DefaultSettingsComponent implements IDefaultSettingsComponent {
 			log.info("initialized properties size [" + properties.size() + "]");
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (inputStream != null) inputStream.close();
-			} catch (Exception e) {
-			}
 		}
 	}
 
@@ -99,8 +93,7 @@ public class DefaultSettingsComponent implements IDefaultSettingsComponent {
 				if (inputStream != null) inputStream.close();
 				if (inputStreamReader != null) inputStreamReader.close();
 				if (bufferedReader != null) bufferedReader.close();
-			} catch (IOException e) {
-			}
+			} catch (IOException e) {}
 		}
 		return set;
 	}
