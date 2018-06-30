@@ -39,7 +39,7 @@
 	<!-- aop -->
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice"
-			pointcut="execution(* cn.candy.**.service.impl.*.*(..))" />
+			pointcut="execution(* cn.candy.**.service.*.*(..))" />
 	</aop:config>
 	 
 </beans>
