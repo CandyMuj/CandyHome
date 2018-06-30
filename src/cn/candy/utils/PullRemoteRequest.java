@@ -41,7 +41,7 @@ import org.codehaus.xfire.client.Client;
  * 	HTTP GET接口
  */
 public class PullRemoteRequest {
-	private static Logger log = Logger.getLogger(PullRemoteRequest.class);
+	private static final Logger log = Logger.getLogger(PullRemoteRequest.class);
 	private static PullRemoteRequest PULL_REMOTE_REQUEST = null;
 
 	// 私有化构造方法

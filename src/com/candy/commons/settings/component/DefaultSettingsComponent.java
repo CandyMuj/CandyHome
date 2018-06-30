@@ -25,7 +25,7 @@ import cn.candy.utils.TextUtil;
  */
 @Component
 public class DefaultSettingsComponent implements IDefaultSettingsComponent {
-	private Logger log = Logger.getLogger(DefaultSettingsComponent.class);
+	private static final Logger log = Logger.getLogger(DefaultSettingsComponent.class);
 
 	// 全局配置文件所在路径
 	private static final String ROOT_PATH = "properties/commons/";
@@ -50,7 +50,7 @@ public class DefaultSettingsComponent implements IDefaultSettingsComponent {
 	 */
 	private void getProperties() {
 		ClassLoader classLoader = DefaultSettingsComponent.class.getClassLoader();
-		Set<String> set = getPropertiesFileName(classLoader);
+		Set<String> set = this.getPropertiesFileName(classLoader);
 		log.info("Initializing properties size [" + set.size() + "]");
 
 		InputStream inputStream = null;
