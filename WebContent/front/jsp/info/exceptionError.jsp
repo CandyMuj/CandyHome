@@ -6,6 +6,29 @@
 <head>
 <title>有趣的错误...</title>
 <link href="${pageContext.request.contextPath }/front/css/info/exceptionError.css" rel="stylesheet" />
+<style type="text/css">
+/* 隐藏 按钮 后续添加*/
+.padding-big {
+	visibility: hidden;
+}
+
+.error-message {
+	height: 42em;
+	margin: 1em 20em 0em 15.5em;
+	/*background-color: red;*/
+	overflow-x: hidden;
+	overflow-y: auto;
+	letter-spacing: 2px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.bxnk-img {
+	position: absolute;
+	left: 90em;
+	top: 35em;
+}
+</style>
 </head>
 
 <body>
@@ -19,18 +42,21 @@
 				<div class="">
 					<div class="float-left">
 						<img src="${pageContext.request.contextPath }/front/img/info/exceptionError/ds-1.gif">
-						<div class="alert">卧槽！ 出错了yooo！</div>
+						<div class="alert">呀！好像出错了 yooo！</div>
 					</div>
 					<div class="float-right">
 						<img src="${pageContext.request.contextPath }/front/img/info/exceptionError/ds-2.png" width="260">
 					</div>
 				</div>
 				<div class="padding-big">
-					<a href="" class="button bg-yellow">返回首页</a> 
-					<a href="" class="button">保证不打死管理员</a>
+					<a href="javascript:;" class="button bg-yellow">返回首页</a> 
+					<a href="javascript:;" class="button">保证不打死管理员</a>
 				</div>
 			</div>
-		${message }
+		</div>
+		<img class="bxnk-img" src="${pageContext.request.contextPath }/front/img/info/exceptionError/bxnkan.jpg" />
+		<div class="error-message">
+			${message }
 		</div>
 	</div>
 </body>
