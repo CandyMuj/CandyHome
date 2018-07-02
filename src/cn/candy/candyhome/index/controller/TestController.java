@@ -37,8 +37,9 @@ public class TestController {
 	}
 
 	@RequestMapping("/test1")
-	public void test1() {
-		System.out.println(DefaultSettings.get("abc"));
+	public void test1() throws Exception{
+		int a = 2/0;
+//		System.out.println(DefaultSettings.get("abc"));
 	}
 
 	@RequestMapping("/test3")

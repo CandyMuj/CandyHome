@@ -12,6 +12,12 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	<!-- 错误页面配置 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/front/jsp/info/404/include404.jsp</location>
+	</error-page>
+
 
 	<!-- 配置spring容器监听器 加载spring的配置文件，不用包含，使用通配符的方式配置 -->
 	<context-param>
