@@ -1,7 +1,6 @@
 package com.candy.commons.settings.component;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashSet;
@@ -93,7 +92,7 @@ public class DefaultSettingsComponent implements IDefaultSettingsComponent {
 				if (inputStream != null) inputStream.close();
 				if (inputStreamReader != null) inputStreamReader.close();
 				if (bufferedReader != null) bufferedReader.close();
-			} catch (IOException e) {}
+			} catch (Exception e) {}
 		}
 		return set;
 	}
