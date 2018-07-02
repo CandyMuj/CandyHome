@@ -10,11 +10,10 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.candy.commons.settings.DefaultSettings;
-
 import cn.candy.candyhome.index.mapper.ItemsMapper;
 import cn.candy.candyhome.index.po.Items;
 
+@SuppressWarnings("unused")
 @Controller
 public class TestController {
 
