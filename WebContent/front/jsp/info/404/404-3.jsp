@@ -1,3 +1,4 @@
+<%-- 参考：http://www.jq22.com/jquery-info16293 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -5,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-<!-- 参考：http://www.jq22.com/jquery-info16293 -->
 <link href="${pageContext.request.contextPath }/front/css/info/404-3.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${pageContext.request.contextPath }/front/plugin/jQuery/jquery-3.3.1.min.js" ></script>
 <script type="text/javascript">
