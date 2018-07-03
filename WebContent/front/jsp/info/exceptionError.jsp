@@ -25,8 +25,8 @@
 
 .bxnk-img {
 	position: absolute;
-	left: 90em;
-	top: 35em;
+	left: 82em;
+	top: 30em;
 }
 </style>
 </head>
@@ -54,7 +54,7 @@
 				</div>
 			</div>
 		</div>
-		<img class="bxnk-img" src="${pageContext.request.contextPath }/front/img/info/exceptionError/bxnkan.jpg" />
+		<img class="bxnk-img" src="${pageContext.request.contextPath }/front/img/info/exceptionError/bxnkan.png" />
 		<div class="error-message">
 			${message }
 		</div>
