@@ -1,5 +1,7 @@
 package cn.candy.candyhome.user.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.candy.commons.controller.SuperController;
+import com.candy.commons.settings.DefaultSettings;
 
 import cn.candy.candyhome.user.service.iface.IUserLoginService;
+import cn.candy.utils.communication.phone.AliDysms;
 
 @Controller
 @RequestMapping("/login")
@@ -47,8 +52,19 @@ public class UserLoginController extends SuperController {
 	 * @return
 	 * @throws Exception
 	 */
+	@RequestMapping(value = "/regist")
 	public String regist() throws Exception {
-
+		
+		AliDysms aliSendSms = AliDysms.getInstance();
+		String phoneNumber = "13551255397";
+		String templateName = DefaultSettings.get("AliSendSms.templateCode.registe");
+		String templateParam = "{\"code\":\"123\"}";
+		String outId = DefaultSettings.get("AliSendSms.outId.registe");
+		SendSmsResponse response = aliSendSms.sendSms(phoneNumber,templateName,templateParam,"","");
+		
+		Thread.sleep(3000L);
+		
+		aliSendSms.querySendDetails(phoneNumber,response.getBizId(),new Date(),10L,1L);
 		return "";
 	}
 
