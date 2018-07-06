@@ -1,24 +1,14 @@
 package cn.candy.test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.Properties;
-
 import org.junit.Test;
+
+import cn.candy.utils.FileUtil;
 
 public class JunitTest {
 
-	private static final Properties properties = new Properties();
-	
 	@Test
-	public void test() {
-		
-		try {
-			properties.load(new FileInputStream(new File("D:\\Eclipse\\Workspace\\CandyWorkspace-OXYGEN\\CandyHome\\config\\properties\\commons\\candy2.properties")));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void test() throws Exception{
+		System.out.println(FileUtil.readFile("D:\\Eclipse\\Workspace\\CandyWorkspace-OXYGEN\\CandyHome\\WebContent\\front\\jsp\\info\\exceptionError.jsp"));
 		
 	}
 	
