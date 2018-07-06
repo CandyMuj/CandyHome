@@ -15,6 +15,7 @@ import com.candy.commons.controller.SuperController;
 import com.candy.commons.settings.DefaultSettings;
 
 import cn.candy.candyhome.user.service.iface.IUserLoginService;
+import cn.candy.utils.communication.mail.CustomMailService;
 import cn.candy.utils.communication.phone.AliDysms;
 
 @Controller
@@ -55,16 +56,22 @@ public class UserLoginController extends SuperController {
 	@RequestMapping(value = "/regist")
 	public String regist() throws Exception {
 		
-		AliDysms aliSendSms = AliDysms.getInstance();
-		String phoneNumber = "13551255397";
-		String templateName = DefaultSettings.get("AliSendSms.templateCode.registe");
-		String templateParam = "{\"code\":\"123\"}";
-		String outId = DefaultSettings.get("AliSendSms.outId.registe");
-		SendSmsResponse response = aliSendSms.sendSms(phoneNumber,templateName,templateParam,"","");
+//		测试发送短信
+//		AliDysms aliSendSms = AliDysms.getInstance();
+//		String phoneNumber = "13551255397";
+//		String templateName = DefaultSettings.get("AliSendSms.templateCode.registe");
+//		String templateParam = "{\"code\":\"123\"}";
+//		String outId = DefaultSettings.get("AliSendSms.outId.registe");
+//		SendSmsResponse response = aliSendSms.sendSms(phoneNumber,templateName,templateParam,"","");
+//		
+//		Thread.sleep(3000L);
+//		
+//		aliSendSms.querySendDetails(phoneNumber,response.getBizId(),new Date(),10L,1L);
 		
-		Thread.sleep(3000L);
 		
-		aliSendSms.querySendDetails(phoneNumber,response.getBizId(),new Date(),10L,1L);
+//		测试发送邮件
+		CustomMailService.getInstance().sendMail("766557580@qq.com", "测试", "测试一下嘻嘻嘻");
+		
 		return "";
 	}
 

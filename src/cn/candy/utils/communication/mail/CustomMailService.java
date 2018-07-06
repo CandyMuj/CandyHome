@@ -15,6 +15,9 @@ import com.candy.commons.settings.DefaultSettings;
  * 自定义的邮件发送程序
  * 未使用任何方提供的接口，直接用java内置的方法发送，若后续上线需要邮箱服务再做修改，目前仅用于项目连通开发测试
  * 原理：SMTP,与平常发送邮件一样，用我的邮箱给别人发邮件，只不过现在由java来发
+ * 由于使用的是spring的框架，并且spring提供了一个封装好的发送邮件的类，可以直接用：JavaMailSenderImpl 
+ * 
+ * 参考：https://blog.csdn.net/qq_32371887/article/details/72821291
  * 
  * @author jx003
  *
@@ -41,13 +44,13 @@ public class CustomMailService {
 	/**
 	 * 发送邮件
 	 *
-	 * @param toUser 接受人
+	 * @param toUser 接收人的email地址
 	 * @param subject 主题
 	 * @param html 发送内容
 	 * @throws MessagingException 异常
 	 * @throws UnsupportedEncodingException 异常
 	 */
-	public void sendHtmlMail(String toUser, String subject, String html) throws MessagingException, UnsupportedEncodingException {
+	public void sendMail(String toUser, String subject, String html) throws MessagingException, UnsupportedEncodingException {
 		JavaMailSenderImpl mailSender = createMailSender();
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		// 设置utf-8或GBK编码，否则邮件会有乱码
