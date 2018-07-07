@@ -70,7 +70,7 @@ public class UserLoginController extends SuperController {
 		
 		
 //		测试发送邮件
-		CustomMailService.getInstance().sendMail("766557580@qq.com", "测试", "测试一下嘻嘻嘻");
+//		CustomMailService.getInstance().sendMail("766557580@qq.com", "测试", "测试一下嘻嘻嘻");
 		
 		return "";
 	}
