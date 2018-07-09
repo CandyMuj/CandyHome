@@ -15,4 +15,4 @@ Write to play ! n(*≧▽≦*)n
 - `数据库`：
   - `版本`：MySQL 5.7.19 [前往下载](https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-winx64.zip)
   - `配置`：`jdbc:mysql://localhost:3306/candy_home`
-  - `数据库文件`:[前往下载](https://share.weiyun.com/5GTe198)
+  - `数据库文件`:[前往下载](https://sz-btfs-v2-yun-ftn.weiyun.com/ftn_handler/813f9b823b595e27aae206fb1bcd5e12c96e27a32614013d4020b7a221116943ddb132a2513586135fd055f9b7f1505aa1da3e9526f0e593b77220825f7da9dd/candy_home.sql?fname=candy_home.sql&from=30111&version=3.3.3.3&uin=10000)
