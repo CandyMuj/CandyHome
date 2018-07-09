@@ -18,7 +18,7 @@
 </body>
 <script type="text/javascript">
 	// 页面根路径
-	var rootPath = "${pageContext.request.contextPath }/front/jsp/info/404/";
+	var rootPath = "${pageContext.request.contextPath }/front/outRes/jsp/info/404/";
 	var htmls = [
 		'404-1.html',
 		'404-2.html',

@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>有趣的错误...</title>
-<link href="${pageContext.request.contextPath }/front/css/info/exceptionError.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/front/outRes/css/info/exceptionError.css" rel="stylesheet" />
 <style type="text/css">
 /* 隐藏 按钮 后续添加*/
 .padding-big {
@@ -41,11 +41,11 @@
 				</h2>
 				<div class="">
 					<div class="float-left">
-						<img src="${pageContext.request.contextPath }/front/img/info/exceptionError/ds-1.gif">
+						<img src="${pageContext.request.contextPath }/front/outRes/img/info/exceptionError/ds-1.gif">
 						<div class="alert">呀！好像出错了 yooo！</div>
 					</div>
 					<div class="float-right">
-						<img src="${pageContext.request.contextPath }/front/img/info/exceptionError/ds-2.png" width="260">
+						<img src="${pageContext.request.contextPath }/front/outRes/img/info/exceptionError/ds-2.png" width="260">
 					</div>
 				</div>
 				<div class="padding-big">
@@ -54,7 +54,7 @@
 				</div>
 			</div>
 		</div>
-		<img class="bxnk-img" src="${pageContext.request.contextPath }/front/img/info/exceptionError/bxnkan.png" />
+		<img class="bxnk-img" src="${pageContext.request.contextPath }/front/outRes/img/info/exceptionError/bxnkan.png" />
 		<div class="error-message">
 			${message }
 		</div>

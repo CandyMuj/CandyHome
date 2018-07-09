@@ -36,15 +36,15 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
 
 		try {
 			request.setAttribute("message", sbuff.toString());
-			request.getRequestDispatcher("/front/jsp/info/exceptionError.jsp").forward(request, response);
+			request.getRequestDispatcher("/front/outRes/jsp/info/exceptionError.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
 
 		// 由于视图解析器的前缀的问题，这里设置会报错
 		// ModelAndView modelAndView = new ModelAndView();
-		// modelAndView.setViewName("/front/jsp/info/exceptionError");
-		// modelAndView.setViewName("/front/jsp/info/exceptionError.jsp");
+		// modelAndView.setViewName("/front/outRes/jsp/info/exceptionError");
+		// modelAndView.setViewName("/front/outRes/jsp/info/exceptionError.jsp");
 
 		return new ModelAndView();
 	}

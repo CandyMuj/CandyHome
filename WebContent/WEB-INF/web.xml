@@ -15,7 +15,7 @@
 	<!-- 错误页面配置 -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/front/jsp/info/404/include404.jsp</location>
+		<location>/front/outRes/jsp/info/404/include404.jsp</location>
 	</error-page>
 
 

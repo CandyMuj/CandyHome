@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-<link href="${pageContext.request.contextPath }/front/css/info/404-3.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/front/outRes/css/info/404-3.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${pageContext.request.contextPath }/front/plugin/jQuery/jquery-3.3.1.min.js" ></script>
 <script type="text/javascript">
 	$(function() {
@@ -45,11 +45,11 @@
 <body>
 
 	<div class="mianBox">
-		<img src="${pageContext.request.contextPath }/front/img/info/404/404-3/yun0.png" alt="" class="yun yun0" />
-		<img src="${pageContext.request.contextPath }/front/img/info/404/404-3/yun1.png" alt="" class="yun yun1" />
-		<img src="${pageContext.request.contextPath }/front/img/info/404/404-3/yun2.png" alt="" class="yun yun2" />
-		<img src="${pageContext.request.contextPath }/front/img/info/404/404-3/bird.png" alt="" class="bird" />
-		<img src="${pageContext.request.contextPath }/front/img/info/404/404-3/san.png" alt="" class="san" />
+		<img src="${pageContext.request.contextPath }/front/outRes/img/info/404/404-3/yun0.png" alt="" class="yun yun0" />
+		<img src="${pageContext.request.contextPath }/front/outRes/img/info/404/404-3/yun1.png" alt="" class="yun yun1" />
+		<img src="${pageContext.request.contextPath }/front/outRes/img/info/404/404-3/yun2.png" alt="" class="yun yun2" />
+		<img src="${pageContext.request.contextPath }/front/outRes/img/info/404/404-3/bird.png" alt="" class="bird" />
+		<img src="${pageContext.request.contextPath }/front/outRes/img/info/404/404-3/san.png" alt="" class="san" />
 		<div class="tipInfo">
 			<div class="in">
 				<div class="textThis">
