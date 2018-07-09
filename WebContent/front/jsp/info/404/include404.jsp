@@ -17,11 +17,6 @@
 	<div id="load404"></div>
 </body>
 <script type="text/javascript">
-	// 设置错误页面的个数
-	var count = 3;
-	var random = Math.floor(count * Math.random());
-	// console.info(random);
-	
 	// 页面根路径
 	var rootPath = "${pageContext.request.contextPath }/front/jsp/info/404/";
 	var htmls = [
@@ -29,6 +24,11 @@
 		'404-2.html',
 		'404-3.jsp'
 	];
+	
+	// 生成随机数
+	var random = Math.floor(htmls.length * Math.random());
+	// console.info(random);
+	
 	// 开始随机加载错误页面
 	$('#load404').load(rootPath + htmls[random]);
 	
