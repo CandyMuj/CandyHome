@@ -4,6 +4,14 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.candy.commons.settings.DefaultSettings;
+
+import cn.candy.candyhome.user.po.CandyUserInfo;
+import cn.candy.candyhome.user.po.UserSession;
+
 /**
  * 自定义的Controller类，实现一些通用的方法
  * 
@@ -11,6 +19,26 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public class SuperController {
+	
+	/**
+	 * 获取用户信息包装类
+	 * 
+	 * @param session
+	 * @return
+	 */
+	protected CandyUserInfo getUserInfo() throws Exception {
+		return getUserSession().getCandyUserInfo();
+	}
+
+	/**
+	 * 获取用户session
+	 * 
+	 * @param session
+	 * @return
+	 */
+	protected UserSession getUserSession() throws Exception{
+		return (UserSession) ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest().getSession().getAttribute(DefaultSettings.get("user.session.name"));
+	}
 
 	/**
 	 * 回送页面的功能
@@ -26,9 +54,9 @@ public class SuperController {
 	/**
 	 * 回送页面的功能
 	 * 
-	 * @param region 跨域返回支持
-	 * @param response
 	 * @param str
+	 * @param response
+	 * @param region 跨域返回支持
 	 */
 	protected void write2Page(String str, HttpServletResponse response, boolean region) {
 		try {

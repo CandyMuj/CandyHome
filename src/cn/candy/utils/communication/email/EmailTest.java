@@ -1,4 +1,4 @@
-package cn.candy.utils.communication.mail;
+package cn.candy.utils.communication.email;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -32,7 +32,7 @@ import com.candy.commons.settings.component.iface.IDefaultSettingsComponent;
  * @author jx003
  * 
  */
-public class MailTest {
+public class EmailTest {
 
 	private static IDefaultSettingsComponent defaultSettings = new DefaultSettingsComponent();
 
@@ -181,7 +181,7 @@ public class MailTest {
 
 	// 以下是演示demo
 	public static void main(String args[]) {
-		MailTest mail = new MailTest();
+		EmailTest mail = new EmailTest();
 		String subject = "测试一下";
 		String content = "这个是ssssss";
 		// 收件人 可以发给其他邮箱(163等) 下同

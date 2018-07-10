@@ -1,8 +1,7 @@
 package cn.candy.candyhome.user.controller;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.candy.commons.controller.SuperController;
-import com.candy.commons.settings.DefaultSettings;
 
 import cn.candy.candyhome.user.service.iface.IUserLoginService;
-import cn.candy.utils.communication.mail.CustomMailService;
-import cn.candy.utils.communication.phone.AliDysms;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/user")
 public class UserLoginController extends SuperController {
 
 	@Autowired
@@ -31,7 +26,7 @@ public class UserLoginController extends SuperController {
 	 * @return
 	 * @throws Exception
 	 */
-	public String toLoginPage() throws Exception {
+	public String loginPage() throws Exception {
 
 		return "";
 	}
@@ -42,11 +37,28 @@ public class UserLoginController extends SuperController {
 	 * @return
 	 * @throws Exception
 	 */
-	public String toIndexPage() throws Exception {
+	public String indexPage() throws Exception {
 
 		return "";
 	}
 
+	// ------------------------- 
+	
+	/**
+	 * 发送验证码
+	 * 支持发送邮箱，和手机
+	 * 类型
+	 * 	手机：phone
+	 * 	邮箱：email
+	 * 
+	 * @throws Exception
+	 */
+	@RequestMapping("/sendActiveCode")
+	public void sendActiveCode(HttpServletRequest request, HttpServletResponse response, String sendType) throws Exception {
+		System.out.println("-------------------------");
+		userLoginService.sendActiveCode(sendType, super.getUserSession(), true);
+	}
+	
 	/**
 	 * 用户注册的方法
 	 * 

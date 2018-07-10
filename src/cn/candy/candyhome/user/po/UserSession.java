@@ -8,4 +8,14 @@ package cn.candy.candyhome.user.po;
  */
 public class UserSession {
 
+	private CandyUserInfo candyUserInfo;
+
+	public CandyUserInfo getCandyUserInfo() {
+		return candyUserInfo;
+	}
+
+	public void setCandyUserInfo(CandyUserInfo candyUserInfo) {
+		this.candyUserInfo = candyUserInfo;
+	}
+
 }

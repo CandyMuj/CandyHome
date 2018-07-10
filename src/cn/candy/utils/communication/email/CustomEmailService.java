@@ -1,4 +1,4 @@
-package cn.candy.utils.communication.mail;
+package cn.candy.utils.communication.email;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -38,18 +38,18 @@ import com.candy.commons.settings.DefaultSettings;
  * @author jx003
  *
  */
-public class CustomMailService {
+public class CustomEmailService {
 
-	private static final Logger log = Logger.getLogger(CustomMailService.class);
+	private static final Logger log = Logger.getLogger(CustomEmailService.class);
 
-	private static CustomMailService SINGLE_CASE = null;
+	private static CustomEmailService SINGLE_CASE = null;
 
 	// 发送的邮箱 内部代码只适用qq邮箱
 	private static final String USER = DefaultSettings.get("CustomMailService.USER");
 	// 授权密码 通过QQ邮箱设置->账户->POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务->开启POP3/SMTP服务获取
 	private static final String PWD = DefaultSettings.get("CustomMailService.PWD");
 
-	private CustomMailService() {
+	private CustomEmailService() {
 	}
 
 	/**
@@ -57,9 +57,9 @@ public class CustomMailService {
 	 * 线程安全的
 	 * @return
 	 */
-	public static synchronized CustomMailService getInstance() {
+	public static synchronized CustomEmailService getInstance() {
 		if (SINGLE_CASE == null) {
-			SINGLE_CASE = new CustomMailService();
+			SINGLE_CASE = new CustomEmailService();
 		}
 		return SINGLE_CASE;
 	}

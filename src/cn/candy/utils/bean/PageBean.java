@@ -3,6 +3,7 @@ package cn.candy.utils.bean;
 import java.util.List;
 
 public class PageBean<T> {
+	
 	// 当前页数
 	private Integer page;
 	// 每页显示条数
