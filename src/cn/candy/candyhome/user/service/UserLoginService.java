@@ -9,12 +9,11 @@ import cn.candy.candyhome.user.po.generator.UserActivationOperation;
 import cn.candy.candyhome.user.service.iface.IUserLoginService;
 
 @Service
-public class UserLoginService implements IUserLoginService{
+public class UserLoginService implements IUserLoginService {
 
 	@Autowired
 	private UserActivationOperationMapper userActivationOperationMapper;
-	
-	
+
 	/**
 	 * 发送验证码
 	 * 
@@ -30,7 +29,7 @@ public class UserLoginService implements IUserLoginService{
 		userActivationOperation.setUid("11");
 		userActivationOperation.setSendTo("222");
 		userActivationOperationMapper.insert(userActivationOperation);
-		
+
 		return null;
 	}
 
