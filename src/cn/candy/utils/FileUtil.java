@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletResponse;
@@ -138,4 +139,44 @@ public class FileUtil {
 		return sbuff;
 	}
 
+	/**
+	 * 通过流读取文件为字符串
+	 * 
+	 * @param inputStream
+	 * @return
+	 */
+	public static StringBuffer readFile(InputStream inputStream) {
+		
+		StringBuffer sbuff = new StringBuffer();
+		
+		InputStreamReader inputStreamReader = null;
+		BufferedReader bufferedReader = null;
+		try {
+			if (inputStream != null) {
+				inputStreamReader = new InputStreamReader(inputStream);
+				bufferedReader = new BufferedReader(inputStreamReader);
+				
+				log.info("[流]按行读取文件的内容----------------");
+				String str = null;
+				while ((str = bufferedReader.readLine()) != null) {
+					sbuff.append(str).append("\n");
+					// System.out.println(str);
+					// log.debug(str);
+				}
+			}
+		} catch (Exception e) {
+			log.error("------ > [流]读取文件失败，发生异常");
+			sbuff.setLength(0);
+			e.printStackTrace();
+		} finally{
+			try {
+				if (bufferedReader != null) bufferedReader.close();
+				if (inputStreamReader != null) inputStreamReader.close();
+				if (inputStream != null) inputStream.close();
+			} catch (Exception e) {}
+		}
+		
+		return sbuff;
+	}
+	
 }
