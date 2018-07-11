@@ -4,6 +4,7 @@ import java.util.UUID;
 
 /**
  * 用于生产随机字符串
+ * 默认生成长度10（除了UUID）
  * 
  * @author jx003
  *
@@ -11,10 +12,13 @@ import java.util.UUID;
 public class RandomString {
 
 	// 设置前缀
-	String prefix = "";
+	private String prefix = "";
 
 	// 设置后缀
-	String suffix = "";
+	private String suffix = "";
+
+	// 默认长度
+	private int defaultLength = 10;
 
 	/**
 	 * 根据长度生成随机字符串
@@ -26,7 +30,7 @@ public class RandomString {
 		String keyString = "abcdefghijklmnopqrstuvwxyz";
 		StringBuffer sbuff = new StringBuffer(prefix);
 		randomByLength(sbuff, keyString, length);
-		return sbuff.append(prefix).toString();
+		return sbuff.append(suffix).toString();
 	}
 
 	/**
@@ -39,45 +43,60 @@ public class RandomString {
 		String keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		StringBuffer sbuff = new StringBuffer(prefix);
 		randomByLength(sbuff, keyString, length);
-		return sbuff.append(prefix).toString();
+		return sbuff.append(suffix).toString();
 	}
 
 	public String randomOnlyNumber(int length) {
 		String keyString = "0123456789";
 		StringBuffer sbuff = new StringBuffer(prefix);
 		randomByLength(sbuff, keyString, length);
-		return sbuff.append(prefix).toString();
+		return sbuff.append(suffix).toString();
 	}
 
 	public String random2LU(int length) {
 		String keyString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		StringBuffer sbuff = new StringBuffer(prefix);
 		randomByLength(sbuff, keyString, length);
-		return sbuff.append(prefix).toString();
+		return sbuff.append(suffix).toString();
 	}
 
 	public String random2LN(int length) {
 		String keyString = "abcdefghijklmnopqrstuvwxyz0123456789";
 		StringBuffer sbuff = new StringBuffer(prefix);
 		randomByLength(sbuff, keyString, length);
-		return sbuff.append(prefix).toString();
+		return sbuff.append(suffix).toString();
 	}
 
 	public String random2UN(int length) {
 		String keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		StringBuffer sbuff = new StringBuffer(prefix);
 		randomByLength(sbuff, keyString, length);
-		return sbuff.append(prefix).toString();
+		return sbuff.append(suffix).toString();
 	}
 
 	public String random2All(int length) {
 		String keyString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		StringBuffer sbuff = new StringBuffer(prefix);
 		randomByLength(sbuff, keyString, length);
-		return sbuff.append(prefix).toString();
+		return sbuff.append(suffix).toString();
 	}
-	
+
+	/**
+	 * 自定义字符串生成
+	 * 
+	 * @param length
+	 * @return
+	 */
+	public String randomByCustom(String keyString, int length) {
+		StringBuffer sbuff = new StringBuffer(prefix);
+		randomByLength(sbuff, keyString, length);
+		return sbuff.append(suffix).toString();
+	}
+
 	private StringBuffer randomByLength(StringBuffer sbuff, String keyString, int length) {
+		if (length <= 0) {
+			length = defaultLength;
+		}
 		int len = keyString.length();
 		for (int i = 0; i < length; i++) {
 			sbuff.append(keyString.charAt((int) Math.round(Math.random() * (len - 1))));
@@ -94,7 +113,6 @@ public class RandomString {
 	public String randomByUUID(boolean format) {
 		return format ? UUID.randomUUID().toString().replace("-", "") : UUID.randomUUID().toString();
 	}
-
 
 	public void setPrefix(String prefix) {
 		this.prefix = prefix;
