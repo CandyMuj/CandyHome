@@ -76,20 +76,4 @@ public class TextUtil {
 		return isNotNull(str) ? str.trim() : "";
 	}
 
-	/**
-	 * 生成随机字符串
-	 * 
-	 * @param length 字串长度
-	 * @return
-	 */
-	public String randomKey(int length) {
-		String KeyString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		StringBuilder sb = new StringBuilder();
-		int len = KeyString.length();
-		for (int i = 0; i < length; i++) {
-			sb.append(KeyString.charAt((int) Math.round(Math.random() * (len - 1))));
-		}
-		return sb.toString();
-	}
-
 }
