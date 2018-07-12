@@ -1,0 +1,13 @@
+#loginForm {
+	cursor: pointer;
+}
+
+#loginByPhone {
+	cursor: pointer;
+	margin-left: 1em;
+}
+
+#registForm {
+	cursor: pointer;
+	margin-left: 1em;
+}

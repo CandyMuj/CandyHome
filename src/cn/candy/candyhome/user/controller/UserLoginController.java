@@ -14,7 +14,7 @@ import com.candy.commons.controller.SuperController;
 import cn.candy.candyhome.user.service.iface.IUserLoginService;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/login")
 public class UserLoginController extends SuperController {
 
 	@Autowired
@@ -26,20 +26,9 @@ public class UserLoginController extends SuperController {
 	 * @return
 	 * @throws Exception
 	 */
-	public String loginPage() throws Exception {
-
-		return "";
-	}
-
-	/**
-	 * 登录成功 跳转到首页
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public String indexPage() throws Exception {
-
-		return "";
+	@RequestMapping("/login")
+	public String login() throws Exception {
+		return "/login/login";
 	}
 
 	// ------------------------- 
@@ -95,8 +84,8 @@ public class UserLoginController extends SuperController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, HttpSession session) throws Exception {
+	@RequestMapping(value = "/tologin", method = RequestMethod.POST)
+	public String tologin(HttpServletRequest request, HttpSession session) throws Exception {
 
 		return "";
 	}
