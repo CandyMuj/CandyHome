@@ -30,10 +30,11 @@
 <body>
 	<div class='login'>
 		<div class='login_title'>
-			<span id="loginForm">登录</span> 
-			<span id="loginByPhone">通过手机登录</span> 
-			<span id="registForm">注册</span>
+			<span id="loginForm" data-value="login">登录</span> 
+			<span id="phoneloginForm" data-value="phonelogin">通过手机登录</span> 
+			<span id="registForm" data-value="regist">注册</span>
 		</div>
+		<%-- 使用密码登录表单 --%>
 		<div class='login_fields'>
 			<div class='login_fields__user'>
 				<div class='icon'>
@@ -66,6 +67,16 @@
 				<input type='button' value='登录'>
 			</div>
 		</div>
+		<%-- 使用手机登录表单 --%>
+		<div class="phonelogin_fields">
+		
+		</div>
+		
+		<%-- 注册表单 --%>
+		<div class="regist_fields">
+			
+		</div>
+		
 		<div class='success'></div>
 		<div class='disclaimer'>
 			<p>
@@ -86,10 +97,9 @@
 	<div class="OverWindows"></div>
 </body>
 <script type="text/javascript">
-	var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
-	var ajaxmockjax = 1;//是否启用虚拟Ajax的请求响 0 不启用  1 启用
-	//默认账号密码
-
+	var canGetCookie = 0; // 是否支持存储Cookie 0 不支持 1 支持
+	var ajaxmockjax = 1; // 是否启用虚拟Ajax的请求响应 0 不启用  1 启用
+	// 默认账号密码
 	var truelogin = "1";
 	var truepwd = "1";
 
@@ -114,7 +124,7 @@
 		ctx.fillText(a, 0, 100);
 	}
 	$(document).keypress(function(e) {
-		// 回车键事件  
+		// 回车键事件 
 		if (e.which == 13) {
 			$('input[type="button"]').click();
 		}
@@ -124,9 +134,11 @@
 		dotColor : '#E8DFE8',
 		lineColor : '#133b88'
 	});
+
 	$('input[name="pwd"]').focus(function() {
 		$(this).attr('type', 'password');
 	});
+
 	$('input[type="text"]').focus(function() {
 		$(this).prev().animate({
 			'opacity' : '1'
@@ -137,95 +149,18 @@
 			'opacity' : '.5'
 		}, 200);
 	});
+	// 设置后方数据正确时的勾动画
 	$('input[name="login"],input[name="pwd"]').keyup(function() {
 		var Len = $(this).val().length;
 		if (!$(this).val() == '' && Len >= 5) {
-			$(this).next().animate({
-				'opacity' : '1',
-				'right' : '30'
-			}, 200);
+			showAndHiddenOk(this, true);
 		} else {
-			$(this).next().animate({
-				'opacity' : '0',
-				'right' : '20'
-			}, 200);
+			showAndHiddenOk(this, false);
 		}
 	});
+
 	var open = 0;
-	layui.use('layer', function() {
-		var msgalert = '默认账号:' + truelogin + '<br/> 默认密码:' + truepwd;
-		var index = layer.alert(msgalert, {
-			icon : 6,
-			time : 4000,
-			offset : 't',
-			closeBtn : 0,
-			title : '友情提示',
-			btn : [],
-			anim : 2,
-			shade : 0
-		});
-		layer.style(index, {
-			color : '#777'
-		});
-		//非空验证
-		$('input[type="button"]').click(
-				function() {
-					var login = $('input[name="login"]').val();
-					var pwd = $('input[name="pwd"]').val();
-					var code = $('input[name="code"]').val();
-					if (login == '') {
-						ErroAlert('请输入您的账号');
-					} else if (pwd == '') {
-						ErroAlert('请输入密码');
-					} else if (code == '' || code.length != 4) {
-						ErroAlert('输入验证码');
-					} else {
-						//认证中..
-						//fullscreen();
-						showAuth();
 
-						//登陆
-						var JsonData = {
-							login : login,
-							pwd : pwd,
-							code : code
-						};
-						//此处做为ajax内部判断
-						var url = "";
-						if (JsonData.login == truelogin
-								&& JsonData.pwd == truepwd
-								&& JsonData.code.toUpperCase() == CodeVal
-										.toUpperCase()) {
-							url = "Ajax/Login";
-						} else {
-							url = "Ajax/LoginFalse";
-						}
-
-						AjaxPost(url, JsonData, function() {
-							//ajax加载中
-						}, function(data) {
-							//ajax返回 
-							//认证完成
-							hiddenAuth();
-
-							setTimeout(function() {
-								$('.authent').hide();
-								$('.login').removeClass('test');
-								if (data.Status == 'ok') {
-									//登录成功
-									$('.login div').fadeOut(100);
-									$('.success').fadeIn(1000);
-									$('.success').html(data.Text);
-									//跳转操作
-
-								} else {
-									AjaxErro(data);
-								}
-							}, 2400);
-						})
-					}
-				})
-	})
 	var fullscreen = function() {
 		elem = document.body;
 		if (elem.webkitRequestFullScreen) {
@@ -238,6 +173,8 @@
 			//浏览器不支持全屏API或已被禁用  
 		}
 	}
+
+	// 虚拟Ajax的请求响应
 	if (ajaxmockjax == 1) {
 		$.mockjax({
 			url : 'Ajax/Login',
@@ -301,5 +238,106 @@
 			$('.login').removeClass('testtwo'); //平移特效
 		}, 2000);
 	}
+
+	// 显示校验正常的动画勾
+	function showAndHiddenOk(dom, isOk) {
+		alert($(this).val())
+		if (isOk) {
+			$(dom).next().animate({
+				'opacity' : '1',
+				'right' : '30'
+			}, 200);
+		} else {
+			$(dom).next().animate({
+				'opacity' : '0',
+				'right' : '20'
+			}, 200);
+		}
+	}
+
+	// 点击操作类型后执行的操作
+	function clickOperation() {
+		if (operation == loginEnum) {
+
+		} else if (operation == phoneloginEnum) {
+
+		} else if (operation == registEnum) {
+
+		} else {
+			ErroAlert("类型错误[" + operation + "]");
+		}
+	}
+
+	/* --- 下方进行事件绑定 --- */
+	var operation = $("#loginForm").attr("data-value"); // 全局参数，记录当前的操作 枚举值：login phone regist
+	// 定义操作枚举值
+	var loginEnum = $("#loginForm").attr("data-value"); // 登录
+	var phoneloginEnum = $("#phoneloginForm").attr("data-value"); // 通过手机登录
+	var registEnum = $("#registForm").attr("data-value"); // 注册
+
+	layui.use('layer', function() {
+		// 登录事件
+		// 非空验证
+		$('input[type="button"]').click(function() {
+			// 数据校验
+			var reData = checkData();
+			if (reData.boo) {
+				// 认证中..
+				// fullscreen();
+				showAuth();
+
+				// 登陆
+				var JsonData = reData.data;
+				// var url = reData.url;
+				// 此处做为ajax内部判断
+				var url = "";
+				if (JsonData.login == truelogin && JsonData.pwd == truepwd) {
+					url = "Ajax/Login";
+				} else {
+					url = "Ajax/LoginFalse";
+				}
+
+				AjaxPost(url, JsonData, function() {
+					//ajax加载中
+				}, function(data) {
+					//ajax返回 
+					//认证完成
+					hiddenAuth();
+
+					setTimeout(function() {
+						$('.authent').hide();
+						$('.login').removeClass('test');
+						if (data.Status == 'ok') {
+							//登录成功
+							$('.login div').fadeOut(100);
+							$('.success').fadeIn(1000);
+							$('.success').html(data.Text);
+							//跳转操作
+
+						} else {
+							AjaxErro(data);
+						}
+					}, 2400);
+				})
+			}
+		})
+	})
+
+	$(function() {
+		// 操作类型事件绑定
+		$(".login_title").children().each(function() {
+			$(this).click(function() {
+				operation = $(this).attr("data-value");
+				$(this).css("color", "#F5FFFA");
+				$(this).css("font-weight", "bold");
+
+				$(this).siblings().each(function() {
+					$(this).css("color", "#D3D7F7");
+					$(this).css("font-weight", 'normal');
+				})
+				clickOperation();
+			})
+		})
+	})
 </script>
 </html>
