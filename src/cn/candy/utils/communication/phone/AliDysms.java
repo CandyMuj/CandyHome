@@ -21,7 +21,7 @@ import cn.candy.utils.TextUtil;
 /**
  * 阿里云短信服务接口封装
  * 
- * Created on 17/6/7.
+ * Created on 18/7/6.
  * 短信API产品的DEMO程序,工程中包含了一个SmsDemo类，直接通过
  * 执行main函数即可体验短信产品API功能(只需要将AK替换成开通了云通信-短信产品功能的AK即可)
  * 工程依赖了2个jar包(存放在工程的libs目录下)
