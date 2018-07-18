@@ -328,10 +328,12 @@
 		$(".login_title").children().each(function() {
 			$(this).click(function() {
 				operation = $(this).attr("data-value");
+				$(this).css("cursor", "default");
 				$(this).css("color", "#F5FFFA");
 				$(this).css("font-weight", "bold");
 
 				$(this).siblings().each(function() {
+					$(this).css("cursor", "pointer");
 					$(this).css("color", "#D3D7F7");
 					$(this).css("font-weight", 'normal');
 				})
