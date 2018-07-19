@@ -34,13 +34,14 @@
 			<span id="phoneloginForm" data-value="phonelogin">通过手机登录</span> 
 			<span id="registForm" data-value="regist">注册</span>
 		</div>
+		
 		<%-- 使用密码登录表单 --%>
-		<div class='login_fields'>
+		<div class='login_fields_cus login_fields'>
 			<div class='login_fields__user'>
 				<div class='icon'>
 					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/user_icon_copy.png'>
 				</div>
-				<input name="login" placeholder='用户名/手机/邮箱' maxlength="16" type='text' autocomplete="off" value="" />
+				<input name="login" placeholder='账号/手机/邮箱' maxlength="16" type='text' autocomplete="off" value="" />
 				<div class='validation'>
 					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/tick.png'>
 				</div>
@@ -68,13 +69,76 @@
 			</div>
 		</div>
 		<%-- 使用手机登录表单 --%>
-		<div class="phonelogin_fields">
-		
+		<div class="phonelogin_fields login_fields">
+			<div class='login_fields__phone'>
+				<div class='icon'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/user_icon_copy.png'>
+				</div>
+				<input name="phonenum" placeholder='手机' maxlength="11" type='text' autocomplete="off" value="" />
+				<div class='validation'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/tick.png'>
+				</div>
+			</div>
+			<div class='login_fields__vacode'>
+				<div class='icon'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/key.png'>
+				</div>
+				<input name="phonedateNum" placeholder='验证码' maxlength="6" type='text' autocomplete="off">
+				<div class='validation'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/tick.png'>
+				</div>
+				<div class='getvalicode'>
+					<a href="javascript:;" class="hvr-icon-spin">获取验证码</a>
+				</div>
+			</div>
+			<div class='login_fields__submit'>
+				<input type='button' value='登录'>
+			</div>
 		</div>
-		
 		<%-- 注册表单 --%>
-		<div class="regist_fields">
-			
+		<div class="regist_fields login_fields">
+			<div class='regist_fields__user login_fields__user'>
+				<div class='icon'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/user_icon_copy.png'>
+				</div>
+				<input name="login" placeholder='账号' maxlength="10" type='text' autocomplete="off" value="" />
+				<div class='validation'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/tick.png'>
+				</div>
+			</div>
+			<div class='regist_fields__password login_fields__password'>
+				<div class='icon'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/lock_icon_copy.png'>
+				</div>
+				<input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off">
+				<div class='validation'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/tick.png'>
+				</div>
+			</div>
+			<div class='regist_fields__phone login_fields__phone'>
+				<div class='icon'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/user_icon_copy.png'>
+				</div>
+				<input name="phonenum" placeholder='手机' maxlength="11" type='text' autocomplete="off" value="" />
+				<div class='validation'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/tick.png'>
+				</div>
+			</div>
+			<div class='regist_fields__vacode login_fields__vacode'>
+				<div class='icon'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/key.png'>
+				</div>
+				<input name="phonedateNum" placeholder='验证码' maxlength="6" type='text' autocomplete="off">
+				<div class='validation'>
+					<img alt="" src='${pageContext.request.contextPath }/front/infRes/login/img/tick.png'>
+				</div>
+				<div class='getvalicode'>
+					<a href="javascript:;" class="hvr-icon-spin">获取验证码</a>
+				</div>
+			</div>
+			<div class='login_fields__submit'>
+				<input type='button' value='注册'>
+			</div>
 		</div>
 		
 		<div class='success'></div>
@@ -84,6 +148,7 @@
 			</p>
 		</div>
 	</div>
+	
 	<div class='authent'>
 		<div class="loader" style="height: 44px; width: 44px; margin-left: 28px;">
 			<div class="loader-inner ball-clip-rotate-multiple">
@@ -258,13 +323,19 @@
 	// 点击操作类型后执行的操作
 	function clickOperation() {
 		if (operation == loginEnum) {
-
+			$(".login_fields_cus").css("display","inline");
+			$(".phonelogin_fields").css("display","none");
+			$(".regist_fields").css("display","none");
 		} else if (operation == phoneloginEnum) {
-
+			$(".login_fields_cus").css("display","none");
+			$(".phonelogin_fields").css("display","inline");
+			$(".regist_fields").css("display","none");
 		} else if (operation == registEnum) {
-
+			$(".login_fields_cus").css("display","none");
+			$(".phonelogin_fields").css("display","none");
+			$(".regist_fields").css("display","inline");
 		} else {
-			ErroAlert("类型错误[" + operation + "]");
+			ErroAlert("类型错误:operation[" + operation + "]");
 		}
 	}
 

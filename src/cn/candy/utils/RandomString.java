@@ -110,7 +110,7 @@ public class RandomString {
 	 * @param format  是否需要剔除 "-"
 	 * @return
 	 */
-	public String randomByUUID(boolean format) {
+	public static String randomByUUID(boolean format) {
 		return format ? UUID.randomUUID().toString().replace("-", "") : UUID.randomUUID().toString();
 	}
 

@@ -1,3 +1,4 @@
+/* 操作类型初始设置 */
 #loginForm {
 	cursor: default;
 	color: #F5FFFA;
@@ -13,3 +14,71 @@
 	cursor: pointer;
 	margin-left: 1em;
 }
+
+/* 各个表单样式设置 */
+.login_fields {
+	display: inline;
+}
+
+.phonelogin_fields {
+	display: none;
+}
+
+.regist_fields {
+	display: none;
+}
+/* 通过手机登录 begin */
+body .login_fields__vacode .icon {
+  top: 51px;
+}
+/* 获取验证码按钮 begin */
+body .getvalicode {
+  position: absolute;
+  z-index: 1;
+  right: 24px;
+  top: 50px;
+  opacity: 1;
+}
+body .getvalicode a {
+  border-radius: 50px;
+  background: transparent;
+  padding: 9px 12px;
+  border: 2px solid #4FA1D9;
+  color: #4FA1D9;
+  text-transform: uppercase;
+  font-size: 11px;
+  -webkit-transition-property: background,color;
+          transition-property: background,color;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+}
+body .getvalicode a:focus {
+  box-shadow: none;
+  outline: none;
+}
+body .getvalicode a:hover {
+  color: white;
+  background: #4FA1D9;
+  cursor: pointer;
+  -webkit-transition-property: background,color;
+          transition-property: background,color;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+}
+/* 获取验证码按钮 end */
+/* 通过手机登录  end */
+
+/* 注册表单 begin*/
+body .regist_fields__password .icon {
+	top: 9px;
+}
+body .regist_fields__phone .icon {
+	top: 92px;
+}
+body .regist_fields__vacode .icon {
+	top: 132px;
+}
+body .regist_fields__vacode .getvalicode {
+	top: 131px;
+}
+/* 注册表单 end*/

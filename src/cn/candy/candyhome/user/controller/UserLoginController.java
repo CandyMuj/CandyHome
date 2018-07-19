@@ -6,12 +6,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.candy.commons.controller.SuperController;
 
 import cn.candy.candyhome.user.service.iface.IUserLoginService;
+import cn.candy.utils.RandomString;
 
 @Controller
 @RequestMapping("/login")
@@ -27,7 +29,9 @@ public class UserLoginController extends SuperController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/login")
-	public String login() throws Exception {
+	public String login(Model model) throws Exception {
+		// 本次请求唯一id，用于验证码获取使用，标识唯一的一次请求
+		model.addAttribute("codeuuid", RandomString.randomByUUID(true));
 		return "/login/login";
 	}
 

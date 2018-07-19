@@ -31,7 +31,7 @@ function checkData() {
 	} else if (operation == registEnum) {
 
 	} else {
-		ErroAlert("类型错误[" + operation + "]");
+		ErroAlert("类型错误:check[" + operation + "]");
 	}
 
 	JsonData.boo = boo;
