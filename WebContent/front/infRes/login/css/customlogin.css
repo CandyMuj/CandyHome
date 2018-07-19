@@ -17,14 +17,17 @@
 
 /* 各个表单样式设置 */
 .login_fields {
+	opacity: 1;
 	display: inline;
 }
 
 .phonelogin_fields {
+	opacity: 0;
 	display: none;
 }
 
 .regist_fields {
+	opacity: 0;
 	display: none;
 }
 /* 通过手机登录 begin */

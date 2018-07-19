@@ -325,15 +325,30 @@
 		if (operation == loginEnum) {
 			$(".login_fields_cus").css("display","inline");
 			$(".phonelogin_fields").css("display","none");
+			$(".phonelogin_fields").css("opacity","0");
 			$(".regist_fields").css("display","none");
+			$(".regist_fields").css("opacity","0");
+			$(".login_fields_cus").animate({
+				'opacity' : '1'
+			}, 600);
 		} else if (operation == phoneloginEnum) {
 			$(".login_fields_cus").css("display","none");
+			$(".login_fields_cus").css("opacity","0");
 			$(".phonelogin_fields").css("display","inline");
 			$(".regist_fields").css("display","none");
+			$(".regist_fields").css("opacity","0");
+			$(".phonelogin_fields").animate({
+				'opacity' : '1'
+			}, 600);
 		} else if (operation == registEnum) {
 			$(".login_fields_cus").css("display","none");
+			$(".login_fields_cus").css("opacity","0");
 			$(".phonelogin_fields").css("display","none");
+			$(".phonelogin_fields").css("opacity","0");
 			$(".regist_fields").css("display","inline");
+			$(".regist_fields").animate({
+				'opacity' : '1'
+			}, 600);
 		} else {
 			ErroAlert("类型错误:operation[" + operation + "]");
 		}
