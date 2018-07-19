@@ -44,12 +44,30 @@ function ErroAlert(e) {
 	});
 }
 
+// 成功弹出
+function SuccessAlert(e) {
+	var index = layer.alert(e, {
+		icon : 6,
+		time : 2000,
+		offset : 't',
+		closeBtn : 0,
+		title : '提示',
+		btn : [],
+		anim : 2,
+		shade : 0
+	});
+	layer.style(index, {
+		color : '#777'
+	});
+}
+
 // Ajax 错误返回处理
 function AjaxErro(e) {
 	if (e.Status == "Erro") {
 		switch (e.Erro) {
 		case "500":
-			top.location.href = '/Erro/Erro500';
+			// top.location.href = '/Erro/Erro500';
+			ErroAlert("错误 : 错误代码 '10002'");
 			break;
 		case "100001":
 			ErroAlert("错误 : 错误代码 '10001'");

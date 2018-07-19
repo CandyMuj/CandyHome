@@ -48,8 +48,9 @@ public class UserLoginController extends SuperController {
 	 */
 	@RequestMapping("/sendActiveCode")
 	public void sendActiveCode(HttpServletRequest request, HttpServletResponse response, String sendType) throws Exception {
-		System.out.println("-------------------------");
-		userLoginService.sendActiveCode(sendType, super.getUserSession(), true);
+		System.out.println("-------------------------"+request.getParameter("codeuuid"));
+//		userLoginService.sendActiveCode(sendType, super.getUserSession(), true);
+		super.write2Page("{\"flag\":true}", response);
 	}
 	
 	/**

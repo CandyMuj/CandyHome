@@ -162,8 +162,12 @@
 	<div class="OverWindows"></div>
 </body>
 <script type="text/javascript">
-	var canGetCookie = 0; // 是否支持存储Cookie 0 不支持 1 支持
-	var ajaxmockjax = 1; // 是否启用虚拟Ajax的请求响应 0 不启用  1 启用
+	var canGetCookie = 0;	// 是否支持存储Cookie 0 不支持 1 支持
+	var ajaxmockjax = 1;	// 是否启用虚拟Ajax的请求响应 0 不启用  1 启用
+	var istimingValidata = true;	// 设置是否开启实时验证，如：账号是否存在，验证码是否正确等
+	var isvalidataok = true;	// 用于存储后台验证的结果，如：账号是否存在，验证码是否正确等,默认值要为false，正确后才为true
+	var waitTime = 30;	// 获取验证码时间间隔
+	
 	// 默认账号密码
 	var truelogin = "1";
 	var truepwd = "1";
@@ -214,13 +218,16 @@
 			'opacity' : '.5'
 		}, 200);
 	});
+	
 	// 设置后方数据正确时的勾动画
 	$('input[name="login"],input[name="pwd"]').keyup(function() {
-		var Len = $(this).val().length;
-		if (!$(this).val() == '' && Len >= 5) {
-			showAndHiddenOk(this, true);
-		} else {
-			showAndHiddenOk(this, false);
+		if(istimingValidata){
+			var Len = $(this).val().length;
+			if (!$(this).val() == '' && Len >= 5) {
+				showAndHiddenOk(this, true);
+			} else {
+				showAndHiddenOk(this, false);
+			}
 		}
 	});
 
@@ -306,7 +313,6 @@
 
 	// 显示校验正常的动画勾
 	function showAndHiddenOk(dom, isOk) {
-		alert($(this).val())
 		if (isOk) {
 			$(dom).next().animate({
 				'opacity' : '1',
@@ -425,6 +431,53 @@
 				})
 				clickOperation();
 			})
+		})
+		
+		// 获取验证码
+		$(".regist_fields .hvr-icon-spin").click(function(){
+			var dom = $(this);
+			if(dom.children("#wait").length <= 0){
+				var codeuuid = "${codeuuid }";
+				if(!codeuuid){
+					ErroAlert('本次请求无效，请刷新页面后重新操作!');
+				} else {
+					AjaxPost("${pageContext.request.contextPath}/login/sendActiveCode.cc", 
+							{codeuuid: codeuuid,checkType:"phone"},
+							function() {
+								// ajax加载中
+							}, function(data) {
+								if(data.flag){
+									//SuccessAlert('验证码发送成功,请注意查收!');
+									dom.css("border-color","#D3D3D3");
+									dom.css("color","#D3D3D3");
+									dom.css("cursor","default");
+									dom.hover(function(){
+										dom.css("opacity","0");
+									},function(){
+										dom.css("opacity","");
+									});
+									var html = "<b id='wait'>" + waitTime + "</b>秒后重新获取";
+									dom.html(html);
+									var wait = dom.children("#wait")[0];
+									var interval = setInterval(function() {
+										var time = --wait.innerHTML;
+										if (time <= 0) {
+											clearInterval(interval);
+											dom.html("获取验证码");
+											dom.css("border","");
+											dom.css("color","");
+											dom.css("cursor","");
+											dom.hover(function(){
+												dom.css("opacity","");
+											},function(){
+												dom.css("opacity","");
+											});
+										}
+									}, 1000);
+								}
+							})
+				}
+			}
 		})
 	})
 </script>
