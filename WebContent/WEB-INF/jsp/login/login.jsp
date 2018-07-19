@@ -453,8 +453,10 @@
 									dom.css("cursor","default");
 									dom.hover(function(){
 										dom.css("opacity","0");
+										dom.css("background","transparent");
 									},function(){
 										dom.css("opacity","");
+										dom.css("background","");
 									});
 									var html = "<b id='wait'>" + waitTime + "</b>秒后重新获取";
 									dom.html(html);
@@ -469,8 +471,10 @@
 											dom.css("cursor","");
 											dom.hover(function(){
 												dom.css("opacity","");
+												dom.css("background","");
 											},function(){
 												dom.css("opacity","");
+												dom.css("background","");
 											});
 										}
 									}, 1000);
