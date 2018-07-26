@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.candy.candyhome.user.mapper.generator.UserAccountMapper">
   <resultMap id="BaseResultMap" type="cn.candy.candyhome.user.po.generator.UserAccount">
-    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <id column="uid" jdbcType="VARCHAR" property="uid" />
     <result column="useraccount" jdbcType="VARCHAR" property="useraccount" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="bind_phone" jdbcType="VARCHAR" property="bindPhone" />
@@ -89,6 +89,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_account
+    where uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_account
+    where uid = #{uid,jdbcType=VARCHAR}
+  </delete>
   <delete id="deleteByExample" parameterType="cn.candy.candyhome.user.po.generator.UserAccountExample">
     delete from user_account
     <if test="_parameter != null">
@@ -231,5 +241,51 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.candy.candyhome.user.po.generator.UserAccount">
+    update user_account
+    <set>
+      <if test="useraccount != null">
+        useraccount = #{useraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="bindPhone != null">
+        bind_phone = #{bindPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bindEmail != null">
+        bind_email = #{bindEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        locked = #{locked,jdbcType=INTEGER},
+      </if>
+      <if test="destroy != null">
+        destroy = #{destroy,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.candy.candyhome.user.po.generator.UserAccount">
+    update user_account
+    set useraccount = #{useraccount,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      bind_phone = #{bindPhone,jdbcType=VARCHAR},
+      bind_email = #{bindEmail,jdbcType=VARCHAR},
+      locked = #{locked,jdbcType=INTEGER},
+      destroy = #{destroy,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where uid = #{uid,jdbcType=VARCHAR}
   </update>
 </mapper>

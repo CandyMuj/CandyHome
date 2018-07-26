@@ -634,6 +634,76 @@ public class UserActivationOperationExample {
             addCriterion("remark not between", value1, value2, "remark");
             return (Criteria) this;
         }
+
+        public Criteria andOperationTypeIsNull() {
+            addCriterion("operation_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeIsNotNull() {
+            addCriterion("operation_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeEqualTo(String value) {
+            addCriterion("operation_type =", value, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeNotEqualTo(String value) {
+            addCriterion("operation_type <>", value, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeGreaterThan(String value) {
+            addCriterion("operation_type >", value, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("operation_type >=", value, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeLessThan(String value) {
+            addCriterion("operation_type <", value, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeLessThanOrEqualTo(String value) {
+            addCriterion("operation_type <=", value, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeLike(String value) {
+            addCriterion("operation_type like", value, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeNotLike(String value) {
+            addCriterion("operation_type not like", value, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeIn(List<String> values) {
+            addCriterion("operation_type in", values, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeNotIn(List<String> values) {
+            addCriterion("operation_type not in", values, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeBetween(String value1, String value2) {
+            addCriterion("operation_type between", value1, value2, "operationType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationTypeNotBetween(String value1, String value2) {
+            addCriterion("operation_type not between", value1, value2, "operationType");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

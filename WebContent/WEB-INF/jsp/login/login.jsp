@@ -359,9 +359,30 @@
 			ErroAlert("类型错误:operation[" + operation + "]");
 		}
 	}
+	
+	// 验证手机号是否有效
+	function checkPhone(tel){
+		var rtn = false;
+        //移动号段
+        var regtel = /^((13[4-9])|(15([0-2]|[7-9]))|(18[2|3|4|7|8])|(178)|(147))[\d]{8}$/;
+        if (regtel.test(tel)) {
+            rtn = true;
+        }
+        //电信号段
+        regtel = /^((133)|(153)|(18[0|1|9])|(177))[\d]{8}$/;
+        if (regtel.test(tel)) {
+            rtn = true;
+        }
+        //联通号段
+        regtel = /^((13[0-2])|(145)|(15[5-6])|(176)|(18[5-6]))[\d]{8}$/;
+        if (regtel.test(tel)) {
+            rtn = true;
+        }
+        return rtn;
+	}
 
 	/* --- 下方进行事件绑定 --- */
-	var operation = $("#loginForm").attr("data-value"); // 全局参数，记录当前的操作 枚举值：login phone regist
+	var operation = $("#loginForm").attr("data-value"); // 全局参数，记录当前的操作
 	// 定义操作枚举值
 	var loginEnum = $("#loginForm").attr("data-value"); // 登录
 	var phoneloginEnum = $("#phoneloginForm").attr("data-value"); // 通过手机登录
@@ -438,16 +459,27 @@
 			var dom = $(this);
 			if(dom.children("#wait").length <= 0){
 				var codeuuid = "${codeuuid }";
+				var phoneNum = "";
+				if (operation == phoneloginEnum) {
+					phoneNum = $(".phonelogin_fields input[name='phonenum']").val();
+				} else if (operation == registEnum) {
+					phoneNum = $(".regist_fields input[name='phonenum']").val();
+				}
+				
 				if(!codeuuid){
 					ErroAlert('本次请求无效，请刷新页面后重新操作!');
+				} else if (!phoneNum) {
+					ErroAlert('手机号不能为空');
+				} else if (!checkPhone(phoneNum)) {
+					ErroAlert('请输入有效的手机号');
 				} else {
 					AjaxPost("${pageContext.request.contextPath}/login/sendActiveCode.cc", 
-							{codeuuid: codeuuid,checkType:"phone"},
+							{codeuuid: codeuuid,sendTo: phoneNum},
 							function() {
 								// ajax加载中
 							}, function(data) {
 								if(data.flag){
-									//SuccessAlert('验证码发送成功,请注意查收!');
+									SuccessAlert('验证码发送成功,请注意查收!');
 									dom.css("border-color","#D3D3D3");
 									dom.css("color","#D3D3D3");
 									dom.css("cursor","default");
@@ -478,11 +510,14 @@
 											});
 										}
 									}, 1000);
+								} else {
+									ErroAlert("发送失败,请检查手机号是否有误");
 								}
 							})
 				}
 			}
 		})
+		
 	})
 </script>
 </html>

@@ -82,6 +82,8 @@ public class CustomEmailService {
 	 */
 	@SuppressWarnings("static-access")
 	public void sendMail(String[] to, String[] cc, String[] bcc, String[] fileList, String subject, String content) throws MessagingException, UnsupportedEncodingException {
+		log.info("custom sendmail to:" + to + " cc:" + cc +" bcc:" + bcc + " subject:" + subject);
+		
 		// 配置发送邮件的环境属性
 		final Properties props = new Properties();
 		// 下面两段代码是设置ssl和端口，不设置发送不出去。

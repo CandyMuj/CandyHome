@@ -10,13 +10,21 @@ public interface UserActivationOperationMapper {
 
     int deleteByExample(UserActivationOperationExample example);
 
+    int deleteByPrimaryKey(String uid);
+
     int insert(UserActivationOperation record);
 
     int insertSelective(UserActivationOperation record);
 
     List<UserActivationOperation> selectByExample(UserActivationOperationExample example);
 
+    UserActivationOperation selectByPrimaryKey(String uid);
+
     int updateByExampleSelective(@Param("record") UserActivationOperation record, @Param("example") UserActivationOperationExample example);
 
     int updateByExample(@Param("record") UserActivationOperation record, @Param("example") UserActivationOperationExample example);
+
+    int updateByPrimaryKeySelective(UserActivationOperation record);
+
+    int updateByPrimaryKey(UserActivationOperation record);
 }

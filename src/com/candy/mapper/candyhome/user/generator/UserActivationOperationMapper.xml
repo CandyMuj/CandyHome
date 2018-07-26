@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.candy.candyhome.user.mapper.generator.UserActivationOperationMapper">
   <resultMap id="BaseResultMap" type="cn.candy.candyhome.user.po.generator.UserActivationOperation">
-    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <id column="uid" jdbcType="VARCHAR" property="uid" />
     <result column="activation_code" jdbcType="VARCHAR" property="activationCode" />
     <result column="activation_type" jdbcType="VARCHAR" property="activationType" />
     <result column="send_to" jdbcType="VARCHAR" property="sendTo" />
@@ -10,6 +10,7 @@
     <result column="is_used" jdbcType="INTEGER" property="isUsed" />
     <result column="used_time" jdbcType="TIMESTAMP" property="usedTime" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="operation_type" jdbcType="VARCHAR" property="operationType" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uid, activation_code, activation_type, send_to, send_time, is_used, used_time, remark
+    uid, activation_code, activation_type, send_to, send_time, is_used, used_time, remark, 
+    operation_type
   </sql>
   <select id="selectByExample" parameterType="cn.candy.candyhome.user.po.generator.UserActivationOperationExample" resultMap="BaseResultMap">
     select
@@ -86,6 +88,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_activation_operation
+    where uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_activation_operation
+    where uid = #{uid,jdbcType=VARCHAR}
+  </delete>
   <delete id="deleteByExample" parameterType="cn.candy.candyhome.user.po.generator.UserActivationOperationExample">
     delete from user_activation_operation
     <if test="_parameter != null">
@@ -95,10 +107,12 @@
   <insert id="insert" parameterType="cn.candy.candyhome.user.po.generator.UserActivationOperation">
     insert into user_activation_operation (uid, activation_code, activation_type, 
       send_to, send_time, is_used, 
-      used_time, remark)
+      used_time, remark, operation_type
+      )
     values (#{uid,jdbcType=VARCHAR}, #{activationCode,jdbcType=VARCHAR}, #{activationType,jdbcType=VARCHAR}, 
       #{sendTo,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{isUsed,jdbcType=INTEGER}, 
-      #{usedTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+      #{usedTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{operationType,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.candy.candyhome.user.po.generator.UserActivationOperation">
     insert into user_activation_operation
@@ -127,6 +141,9 @@
       <if test="remark != null">
         remark,
       </if>
+      <if test="operationType != null">
+        operation_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uid != null">
@@ -152,6 +169,9 @@
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +208,9 @@
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
+      <if test="record.operationType != null">
+        operation_type = #{record.operationType,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -202,9 +225,52 @@
       send_time = #{record.sendTime,jdbcType=TIMESTAMP},
       is_used = #{record.isUsed,jdbcType=INTEGER},
       used_time = #{record.usedTime,jdbcType=TIMESTAMP},
-      remark = #{record.remark,jdbcType=VARCHAR}
+      remark = #{record.remark,jdbcType=VARCHAR},
+      operation_type = #{record.operationType,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.candy.candyhome.user.po.generator.UserActivationOperation">
+    update user_activation_operation
+    <set>
+      <if test="activationCode != null">
+        activation_code = #{activationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="activationType != null">
+        activation_type = #{activationType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTo != null">
+        send_to = #{sendTo,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUsed != null">
+        is_used = #{isUsed,jdbcType=INTEGER},
+      </if>
+      <if test="usedTime != null">
+        used_time = #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        operation_type = #{operationType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.candy.candyhome.user.po.generator.UserActivationOperation">
+    update user_activation_operation
+    set activation_code = #{activationCode,jdbcType=VARCHAR},
+      activation_type = #{activationType,jdbcType=VARCHAR},
+      send_to = #{sendTo,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      is_used = #{isUsed,jdbcType=INTEGER},
+      used_time = #{usedTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      operation_type = #{operationType,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=VARCHAR}
   </update>
 </mapper>

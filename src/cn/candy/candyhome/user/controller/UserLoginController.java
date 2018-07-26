@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,16 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.candy.commons.controller.SuperController;
+import com.candy.commons.service.CodeService;
 
 import cn.candy.candyhome.user.service.iface.IUserLoginService;
 import cn.candy.utils.RandomString;
+import cn.candy.utils.TextUtil;
 
 @Controller
 @RequestMapping("/login")
 public class UserLoginController extends SuperController {
+	private static final Logger log = Logger.getLogger(UserLoginController.class);
 
 	@Autowired
 	private IUserLoginService userLoginService;
+
+	@Autowired
+	private CodeService codeService;
 
 	/**
 	 * 登录页面跳转
@@ -31,12 +38,14 @@ public class UserLoginController extends SuperController {
 	@RequestMapping("/login")
 	public String login(Model model) throws Exception {
 		// 本次请求唯一id，用于验证码获取使用，标识唯一的一次请求
-		model.addAttribute("codeuuid", RandomString.randomByUUID(true));
+		RandomString randomString = new RandomString();
+		randomString.setPrefix("[login]");
+		model.addAttribute("codeuuid", randomString.random2All(8));
 		return "/login/login";
 	}
 
-	// ------------------------- 
-	
+	// -------------------------
+
 	/**
 	 * 发送验证码
 	 * 支持发送邮箱，和手机
@@ -47,12 +56,20 @@ public class UserLoginController extends SuperController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/sendActiveCode")
-	public void sendActiveCode(HttpServletRequest request, HttpServletResponse response, String sendType) throws Exception {
-		System.out.println("-------------------------"+request.getParameter("codeuuid"));
-//		userLoginService.sendActiveCode(sendType, super.getUserSession(), true);
-		super.write2Page("{\"flag\":true}", response);
+	public void sendActiveCode(HttpServletRequest request, HttpServletResponse response, String codeuuid, String sendTo) {
+		boolean boo = false;
+		try {
+			if (TextUtil.isNotNull(codeuuid) && TextUtil.isNotNull(sendTo)) {
+				codeService.sendPhoneActiveCode("regist", codeuuid, sendTo);
+				boo = true;
+			}
+		} catch (Exception e) {
+			log.error("发送验证码异常...");
+			e.printStackTrace();
+		}
+		super.write2Page("{\"flag\":" + boo + "}", response);
 	}
-	
+
 	/**
 	 * 用户注册的方法
 	 * 
@@ -61,23 +78,7 @@ public class UserLoginController extends SuperController {
 	 */
 	@RequestMapping(value = "/regist")
 	public String regist() throws Exception {
-		
-//		测试发送短信
-//		AliDysms aliSendSms = AliDysms.getInstance();
-//		String phoneNumber = "13551255397";
-//		String templateName = DefaultSettings.get("AliSendSms.templateCode.registe");
-//		String templateParam = "{\"code\":\"123\"}";
-//		String outId = DefaultSettings.get("AliSendSms.outId.registe");
-//		SendSmsResponse response = aliSendSms.sendSms(phoneNumber,templateName,templateParam,"","");
-//		
-//		Thread.sleep(3000L);
-//		
-//		aliSendSms.querySendDetails(phoneNumber,response.getBizId(),new Date(),10L,1L);
-		
-		
-//		测试发送邮件
-//		CustomMailService.getInstance().sendMail("766557580@qq.com", "测试", "测试一下嘻嘻嘻");
-		
+
 		return "";
 	}
 

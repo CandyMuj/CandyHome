@@ -62,7 +62,7 @@
 	<!-- 自定义webBinder -->
 	<bean id="customBinder"
 		class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
-		<!-- 使用converter进行参数转 -->
+		<!-- 使用converter进行参数转换 -->
 		<property name="conversionService" ref="conversionService" />
 		<!-- 配置validator -->
 		<property name="validator" ref="validator" />

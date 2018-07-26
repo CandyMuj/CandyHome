@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.candy.candyhome.user.mapper.generator.UserAccountOperationMapper">
   <resultMap id="BaseResultMap" type="cn.candy.candyhome.user.po.generator.UserAccountOperation">
-    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <id column="uid" jdbcType="VARCHAR" property="uid" />
     <result column="operation_time" jdbcType="TIMESTAMP" property="operationTime" />
     <result column="operation_reason" jdbcType="VARCHAR" property="operationReason" />
     <result column="operation_type" jdbcType="VARCHAR" property="operationType" />
@@ -82,6 +82,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_account_operation
+    where uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_account_operation
+    where uid = #{uid,jdbcType=VARCHAR}
+  </delete>
   <delete id="deleteByExample" parameterType="cn.candy.candyhome.user.po.generator.UserAccountOperationExample">
     delete from user_account_operation
     <if test="_parameter != null">
@@ -160,5 +170,27 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.candy.candyhome.user.po.generator.UserAccountOperation">
+    update user_account_operation
+    <set>
+      <if test="operationTime != null">
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationReason != null">
+        operation_reason = #{operationReason,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        operation_type = #{operationType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.candy.candyhome.user.po.generator.UserAccountOperation">
+    update user_account_operation
+    set operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      operation_reason = #{operationReason,jdbcType=VARCHAR},
+      operation_type = #{operationType,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=VARCHAR}
   </update>
 </mapper>

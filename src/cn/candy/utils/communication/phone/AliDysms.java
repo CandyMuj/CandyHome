@@ -42,13 +42,13 @@ public class AliDysms {
 	private static final Logger log = Logger.getLogger(AliDysms.class);
 	
 	// 产品名称:云通信短信API产品,开发者无需替换
-    static final String product = DefaultSettings.get("AliSendSms.product");
+	private static final String product = DefaultSettings.get("AliSendSms.product");
     // 产品域名,开发者无需替换
-    static final String domain = DefaultSettings.get("AliSendSms.domain");
+	private static final String domain = DefaultSettings.get("AliSendSms.domain");
 
     // 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
-    static final String accessKeyId = DefaultSettings.get("AliSendSms.accessKeyId");
-    static final String accessKeySecret = DefaultSettings.get("AliSendSms.accessKeySecret");
+	private static final String accessKeyId = DefaultSettings.get("AliSendSms.accessKeyId");
+	private static final String accessKeySecret = DefaultSettings.get("AliSendSms.accessKeySecret");
 
     
 	private AliDysms() {
@@ -73,13 +73,16 @@ public class AliDysms {
      * @throws ClientException
      */
 	public SendSmsResponse sendSms(String phoneNumbers, String templateCode, String templateParam, String smsUpExtendCode, String outId) throws ClientException {
+		log.info("ali sendsms phoneNumbers:" + phoneNumbers);
 		
 		// 发短信
         SendSmsResponse response = toSendSms(phoneNumbers, templateCode, templateParam, smsUpExtendCode, outId);
         if(response.getCode() != null && response.getCode().equals("OK")) {
 			// 请求成功
         	log.info("短信接口请求成功----------------");
-        }
+        } else {
+			log.info("短信接口请求失败----------------");
+		}
         
         if ("true".equalsIgnoreCase(DefaultSettings.get("AliSendSms.sendSms.printLog"))) {
 	        System.out.println("短信接口返回的数据----------------");
@@ -149,6 +152,7 @@ public class AliDysms {
      * @throws ClientException
      */
     public QuerySendDetailsResponse querySendDetails(String phoneNumber, String bizId, Date sendDate,Long pageSize,Long currentPage) throws ClientException {
+    	log.info("ali querysenddetails phoneNumber:" + phoneNumber + " bizId:" + bizId + " sendDate:" + sendDate + " pageSize:" + pageSize + " currentPage:" + currentPage);
     	
     	// 查明细
     	QuerySendDetailsResponse querySendDetailsResponse = toQuerySendDetails(phoneNumber, bizId, sendDate, pageSize, currentPage);
@@ -156,6 +160,8 @@ public class AliDysms {
 		if (querySendDetailsResponse.getCode() != null && querySendDetailsResponse.getCode().equals("OK")) {
 			// 代表请求成功
 			log.info("短信明细查询接口请求成功----------------");
+		} else {
+			log.info("短信明细查询接口请求失败----------------");
 		}
     	
 		// 获取并打印返回结果

@@ -19,6 +19,8 @@ public class UserActivationOperation {
 
     private String remark;
 
+    private String operationType;
+
     public String getUid() {
         return uid;
     }
@@ -81,5 +83,13 @@ public class UserActivationOperation {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getOperationType() {
+        return operationType;
+    }
+
+    public void setOperationType(String operationType) {
+        this.operationType = operationType == null ? null : operationType.trim();
     }
 }
