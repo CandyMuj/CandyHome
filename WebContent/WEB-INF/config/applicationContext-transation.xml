@@ -27,7 +27,7 @@
 	 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
-<!-- - 通知 -
+	<!-- - 通知 -
 	<tx:advice id="txAdvice"
 		transaction-manager="transactionManager">
 		<tx:attributes>
