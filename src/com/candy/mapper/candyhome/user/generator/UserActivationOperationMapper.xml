@@ -11,6 +11,7 @@
     <result column="used_time" jdbcType="TIMESTAMP" property="usedTime" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="operation_type" jdbcType="VARCHAR" property="operationType" />
+    <result column="sendnum" jdbcType="INTEGER" property="sendnum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List">
     uid, activation_code, activation_type, send_to, send_time, is_used, used_time, remark, 
-    operation_type
+    operation_type, sendnum
   </sql>
   <select id="selectByExample" parameterType="cn.candy.candyhome.user.po.generator.UserActivationOperationExample" resultMap="BaseResultMap">
     select
@@ -107,12 +108,12 @@
   <insert id="insert" parameterType="cn.candy.candyhome.user.po.generator.UserActivationOperation">
     insert into user_activation_operation (uid, activation_code, activation_type, 
       send_to, send_time, is_used, 
-      used_time, remark, operation_type
-      )
+      used_time, remark, operation_type, 
+      sendnum)
     values (#{uid,jdbcType=VARCHAR}, #{activationCode,jdbcType=VARCHAR}, #{activationType,jdbcType=VARCHAR}, 
       #{sendTo,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{isUsed,jdbcType=INTEGER}, 
-      #{usedTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{operationType,jdbcType=VARCHAR}
-      )
+      #{usedTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{operationType,jdbcType=VARCHAR}, 
+      #{sendnum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.candy.candyhome.user.po.generator.UserActivationOperation">
     insert into user_activation_operation
@@ -144,6 +145,9 @@
       <if test="operationType != null">
         operation_type,
       </if>
+      <if test="sendnum != null">
+        sendnum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uid != null">
@@ -172,6 +176,9 @@
       </if>
       <if test="operationType != null">
         #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendnum != null">
+        #{sendnum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -211,6 +218,9 @@
       <if test="record.operationType != null">
         operation_type = #{record.operationType,jdbcType=VARCHAR},
       </if>
+      <if test="record.sendnum != null">
+        sendnum = #{record.sendnum,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -226,7 +236,8 @@
       is_used = #{record.isUsed,jdbcType=INTEGER},
       used_time = #{record.usedTime,jdbcType=TIMESTAMP},
       remark = #{record.remark,jdbcType=VARCHAR},
-      operation_type = #{record.operationType,jdbcType=VARCHAR}
+      operation_type = #{record.operationType,jdbcType=VARCHAR},
+      sendnum = #{record.sendnum,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -258,6 +269,9 @@
       <if test="operationType != null">
         operation_type = #{operationType,jdbcType=VARCHAR},
       </if>
+      <if test="sendnum != null">
+        sendnum = #{sendnum,jdbcType=INTEGER},
+      </if>
     </set>
     where uid = #{uid,jdbcType=VARCHAR}
   </update>
@@ -270,7 +284,8 @@
       is_used = #{isUsed,jdbcType=INTEGER},
       used_time = #{usedTime,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR},
-      operation_type = #{operationType,jdbcType=VARCHAR}
+      operation_type = #{operationType,jdbcType=VARCHAR},
+      sendnum = #{sendnum,jdbcType=INTEGER}
     where uid = #{uid,jdbcType=VARCHAR}
   </update>
 </mapper>

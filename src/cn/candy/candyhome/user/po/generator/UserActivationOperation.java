@@ -21,6 +21,8 @@ public class UserActivationOperation {
 
     private String operationType;
 
+    private Integer sendnum;
+
     public String getUid() {
         return uid;
     }
@@ -91,5 +93,13 @@ public class UserActivationOperation {
 
     public void setOperationType(String operationType) {
         this.operationType = operationType == null ? null : operationType.trim();
+    }
+
+    public Integer getSendnum() {
+        return sendnum;
+    }
+
+    public void setSendnum(Integer sendnum) {
+        this.sendnum = sendnum;
     }
 }

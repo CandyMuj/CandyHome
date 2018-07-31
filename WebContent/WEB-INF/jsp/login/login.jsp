@@ -166,7 +166,7 @@
 	var ajaxmockjax = 1;	// 是否启用虚拟Ajax的请求响应 0 不启用  1 启用
 	var istimingValidata = true;	// 设置是否开启实时验证，如：账号是否存在，验证码是否正确等
 	var isvalidataok = true;	// 用于存储后台验证的结果，如：账号是否存在，验证码是否正确等,默认值要为false，正确后才为true
-	var waitTime = 30;	// 获取验证码时间间隔
+	var waitTime = 60;	// 获取验证码时间间隔
 	
 	// 默认账号密码
 	var truelogin = "1";
@@ -454,10 +454,12 @@
 			})
 		})
 		
+		// 防止重复点击按钮
+		var isclick = true;
 		// 获取验证码
 		$(".regist_fields .hvr-icon-spin").click(function(){
 			var dom = $(this);
-			if(dom.children("#wait").length <= 0){
+			if(isclick && dom.children("#wait").length <= 0){
 				var codeuuid = "${codeuuid }";
 				var phoneNum = "";
 				if (operation == phoneloginEnum) {
@@ -473,6 +475,7 @@
 				} else if (!checkPhone(phoneNum)) {
 					ErroAlert('请输入有效的手机号');
 				} else {
+					isclick = false;
 					AjaxPost("${pageContext.request.contextPath}/login/sendActiveCode.cc", 
 							{codeuuid: codeuuid,sendTo: phoneNum},
 							function() {
@@ -508,10 +511,11 @@
 												dom.css("opacity","");
 												dom.css("background","");
 											});
+											isclick = true;
 										}
 									}, 1000);
 								} else {
-									ErroAlert("发送失败,请检查手机号是否有误");
+									ErroAlert("[获取失败]" + data.msg);
 								}
 							})
 				}

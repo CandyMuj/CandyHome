@@ -704,6 +704,66 @@ public class UserActivationOperationExample {
             addCriterion("operation_type not between", value1, value2, "operationType");
             return (Criteria) this;
         }
+
+        public Criteria andSendnumIsNull() {
+            addCriterion("sendnum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumIsNotNull() {
+            addCriterion("sendnum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumEqualTo(Integer value) {
+            addCriterion("sendnum =", value, "sendnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumNotEqualTo(Integer value) {
+            addCriterion("sendnum <>", value, "sendnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumGreaterThan(Integer value) {
+            addCriterion("sendnum >", value, "sendnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sendnum >=", value, "sendnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumLessThan(Integer value) {
+            addCriterion("sendnum <", value, "sendnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumLessThanOrEqualTo(Integer value) {
+            addCriterion("sendnum <=", value, "sendnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumIn(List<Integer> values) {
+            addCriterion("sendnum in", values, "sendnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumNotIn(List<Integer> values) {
+            addCriterion("sendnum not in", values, "sendnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumBetween(Integer value1, Integer value2) {
+            addCriterion("sendnum between", value1, value2, "sendnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendnumNotBetween(Integer value1, Integer value2) {
+            addCriterion("sendnum not between", value1, value2, "sendnum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -40,7 +40,7 @@ public class UserLoginController extends SuperController {
 		// 本次请求唯一id，用于验证码获取使用，标识唯一的一次请求
 		RandomString randomString = new RandomString();
 		randomString.setPrefix("[login]");
-		model.addAttribute("codeuuid", randomString.random2All(8));
+		model.addAttribute("codeuuid", randomString.random2All(12));
 		return "/login/login";
 	}
 
@@ -58,16 +58,19 @@ public class UserLoginController extends SuperController {
 	@RequestMapping("/sendActiveCode")
 	public void sendActiveCode(HttpServletRequest request, HttpServletResponse response, String codeuuid, String sendTo) {
 		boolean boo = false;
+		String msg = "请重试";
 		try {
 			if (TextUtil.isNotNull(codeuuid) && TextUtil.isNotNull(sendTo)) {
-				codeService.sendPhoneActiveCode("regist", codeuuid, sendTo);
-				boo = true;
+				msg = codeService.sendPhoneActiveCode("regist", codeuuid, sendTo);
+				if ("true".equals(msg)) {
+					boo = true;
+				}
 			}
 		} catch (Exception e) {
 			log.error("发送验证码异常...");
 			e.printStackTrace();
 		}
-		super.write2Page("{\"flag\":" + boo + "}", response);
+		super.write2Page("{\"flag\":" + boo + ",\"msg\":\"" + msg + "\"}", response);
 	}
 
 	/**
