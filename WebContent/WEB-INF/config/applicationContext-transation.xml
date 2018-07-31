@@ -46,5 +46,5 @@
 		<aop:advisor advice-ref="txAdvice"
 			pointcut="execution(* cn.candy.**.service.*.*(..))" />
 	</aop:config> -->
-	
+
 </beans>
