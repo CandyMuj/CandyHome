@@ -21,8 +21,13 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+	<!-- 使用注解事务管理 
+		使用注解：@Transactional 进行事务管理，一般都在service
+	 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
-	<!-- 通知 -->
+<!-- - 通知 -
 	<tx:advice id="txAdvice"
 		transaction-manager="transactionManager">
 		<tx:attributes>
@@ -36,10 +41,10 @@
 		</tx:attributes>
 	</tx:advice>
 
-	<!-- aop -->
+	- aop -
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice"
 			pointcut="execution(* cn.candy.**.service.*.*(..))" />
-	</aop:config>
-	 
+	</aop:config> -->
+	
 </beans>
